@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>西藏 13 日 · 佩枯措+雪山摄影环线 · 2026-09-26 ~ 2026-10-08</title>
+  <title>西藏 13 天环线 · 四大措+双雪山（9 处住宿） · 2026-09-26 ~ 2026-10-08</title>
   <style>
     /* ===== 基础 ===== */
     *, *::before, *::after { box-sizing: border-box; }
@@ -1219,9 +1219,9 @@
     <div id="validation-banner" role="status" aria-live="polite" hidden></div>
 
     <header class="hero">
-      <h1>西藏 13 日 · 佩枯措+雪山摄影环线</h1>
+      <h1>西藏 13 天环线 · 四大措+双雪山（9 处住宿）</h1>
       <p class="meta">2026-09-26 ~ 2026-10-08 · 13 天 12 晚 · 西藏（拉萨→纳木错→珠峰→佩枯措）</p>
-      <p class="summary">逆时针环线：纳木错、色林错、羊湖、佩枯措四大措 + 珠峰、希夏邦马两大雪山 + 扎什伦布寺一座寺。一地 2-3 天不赶路，全程日落导向（不看日出），一个人自驾沃尔沃 XC60。</p>
+      <p class="summary">逆时针环线：拉萨→纳木错→色林错→拉萨→羊湖→珠峰→佩枯措→拉萨。纳木错、色林错、羊卓雍措、佩枯措四大措 + 珠峰、希夏邦马两大雪山 + 扎什伦布寺（班禅）。全程 9 处住宿（每晚不同，见住宿总览），一地 2-3 天不赶路，日落导向（不看日出），一人自驾沃尔沃 XC60，10/7 返拉萨、10/8 飞离。</p>
     </header>
 
     <button class="drawer-toggle" id="drawer-toggle" aria-label="打开行程信息" aria-expanded="false" aria-controls="drawer">
@@ -1382,11 +1382,11 @@
     window.tripData = {
   "$schema": "./README.md#schema",
   "amap_key": "",
-  "trip_name": "西藏 13 日 · 佩枯措+雪山摄影环线",
+  "trip_name": "西藏 13 天环线 · 四大措+双雪山（9 处住宿）",
   "date_range": "2026-09-26 ~ 2026-10-08",
   "n_days": "13 天 12 晚",
   "city": "西藏（拉萨→纳木错→珠峰→佩枯措）",
-  "summary": "逆时针环线：纳木错、色林错、羊湖、佩枯措四大措 + 珠峰、希夏邦马两大雪山 + 扎什伦布寺一座寺。一地 2-3 天不赶路，全程日落导向（不看日出），一个人自驾沃尔沃 XC60。",
+  "summary": "逆时针环线：拉萨→纳木错→色林错→拉萨→羊湖→珠峰→佩枯措→拉萨。纳木错、色林错、羊卓雍措、佩枯措四大措 + 珠峰、希夏邦马两大雪山 + 扎什伦布寺（班禅）。全程 9 处住宿（每晚不同，见住宿总览），一地 2-3 天不赶路，日落导向（不看日出），一人自驾沃尔沃 XC60，10/7 返拉萨、10/8 飞离。",
   "weather_plan": "9 月底-10 月初西藏进入旱季，通透度高；纳木错、珠峰、佩枯措夜间 0℃ 以下，带足保暖；那根拉山口(5190m)可能飘雪，备防滑链。",
   "trip_center": [
     88.5,
@@ -3643,15 +3643,27 @@
 
       // ===== Hotel =====
       function renderHotel() {
-        const h = D.hotel || {};
-        if (h.commute && h.commute.length) {
-          const items = h.commute.map(c =>
-            `<li>Day ${c.day} ${esc(c.region)}：${esc(c.mode)} ${c.duration_min} 分钟</li>`
-          ).join('');
-          document.getElementById('hotel-commute').innerHTML =
-            `<details class="hotel-commute"><summary>每天通勤（点击展开）</summary>
-              <ul>${items}</ul>
-            </details>`;
+        // 住宿总览：从每天 POI 中收集 cat=stay 的住宿点（按天去重）
+        const seen = new Set();
+        const stays = [];
+        (D.days || []).forEach(d => {
+          (d.pois || []).forEach(p => {
+            if (p.cat === 'stay' && p.name) {
+              const key = d.day + '|' + p.name;
+              if (seen.has(key)) return;
+              seen.add(key);
+              stays.push({ day: d.day, name: p.nav_name || p.name, lng: p.lng, lat: p.lat });
+            }
+          });
+        });
+        const el = document.getElementById('hotel-commute');
+        if (el && stays.length) {
+          el.innerHTML = `<details class="hotel-commute" open>
+            <summary>全程住宿总览（${stays.length} 处）</summary>
+            <ul>${stays.map(s =>
+              `<li><b>Day ${s.day}</b> ${esc(s.name)}</li>`
+            ).join('')}</ul>
+          </details>`;
         }
       }
 
@@ -4023,10 +4035,15 @@
           map.setZoomAndCenter(d.zoom || 14, d.center);
         }
 
-        // 酒店 marker（每日都画，方便看锚点位置）
-        if (D.hotel && D.hotel.lng && D.hotel.lat) {
+        // 酒店 marker：只画当天的住宿点（cat=stay），不再全局固定拉萨酒店
+        const dayStay = (d.pois || []).find(p => p.cat === 'stay');
+        const hotelLoc = dayStay && dayStay.lng != null
+          ? { lng: dayStay.lng, lat: dayStay.lat }
+          : (D.hotel && D.hotel.lng != null ? { lng: D.hotel.lng, lat: D.hotel.lat } : null);
+        if (hotelLoc) {
+          const hotelName = dayStay ? (dayStay.nav_name || dayStay.name) : (D.hotel.name || '酒店');
           const hotelMarker = new AMap.Marker({
-            position: [D.hotel.lng, D.hotel.lat],
+            position: [hotelLoc.lng, hotelLoc.lat],
             anchor: 'center',
             offset: new AMap.Pixel(-18, -18),
             content: `<div style="
@@ -4038,15 +4055,14 @@
               border:3px solid white;
               box-shadow:0 3px 6px rgba(0,0,0,0.4);
             ">🏨</div>`,
-            title: D.hotel.name || '酒店',
+            title: hotelName,
             zIndex: 200
           });
           hotelMarker.on('click', () => {
             const info = `<div style="padding:8px;max-width:240px;font-size:13px">
-              <strong>🏨 ${esc(D.hotel.name || '酒店')}</strong><br>
-              <span style="color:#888">${esc(D.hotel.address || '')}</span>
-              ${D.hotel.price ? `<p style="margin:6px 0;color:#666">${D.hotel.price.min}-${D.hotel.price.max} ${D.hotel.price.currency||'CNY'}/晚</p>` : ''}
-              ${D.hotel.why ? `<p style="margin:6px 0;color:#666">${esc(D.hotel.why)}</p>` : ''}
+              <strong>🏨 ${esc(hotelName)}</strong><br>
+              <span style="color:#888">Day ${d.day} 住宿</span>
+              ${dayStay && dayStay.note ? `<p style="margin:6px 0;color:#666">${esc(dayStay.note)}</p>` : ''}
             </div>`;
             new AMap.InfoWindow({ content: info, offset: new AMap.Pixel(0, -36) })
               .open(map, hotelMarker.getPosition());
