@@ -4072,8 +4072,8 @@
           document.getElementById('map').style.display = 'none';
           const fb = document.createElement('div');
           fb.className = 'map-fallback';
-          fb.innerHTML = `<p>⚠️ 未配置高德 Web API Key</p>
-            <p class="hint">在 AI Step 7 输出时填入 <code>window.AMAP_KEY</code>，或参见 README 申请（免费）</p>`;
+          fb.innerHTML = `<p>🗺️ 内嵌地图未启用（导航链接均可用）</p>
+            <p class="hint">每个地点都有「高德导航」按钮，点开直接唤起高德 App 导航，不受影响。<br>如需页面内嵌地图，可申请免费的高德 Web API Key 后启用。</p>`;
           const panel = document.getElementById('map-panel');
           const inner = panel && panel.querySelector('.map-panel-inner');
           (inner || panel || document.querySelector('.map-section')).appendChild(fb);
