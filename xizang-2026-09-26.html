@@ -4198,13 +4198,15 @@
         posGroups.forEach((items) => {
           items.forEach(({ seq, d, p }, idx) => {
             const dayColor = DAY_PALETTE[(d.day - 1) % DAY_PALETTE.length] || '#333';
-            // 3x3 网格偏移（10px 步进）：组内第 idx 个点偏移到网格位置，避免完全重叠
-            const dx = (idx % 3) * 10 - 10;
-            const dy = Math.floor(idx / 3) * 10 - 10;
+            // 3x3 网格偏移（22px 步进，marker 直径 28px，完全错开不遮挡）：组内第 idx 个点偏移到网格位置
+            const dx = (idx % 3) * 22 - 22;
+            const dy = Math.floor(idx / 3) * 22 - 22;
             const marker = new AMap.Marker({
             position: [p.lng, p.lat],
             anchor: 'center',
             offset: new AMap.Pixel(-14 + dx, -14 + dy),
+            // 序号小的 zIndex 更高，保证 1 号机场不被 49 号盖住
+            zIndex: 200 - seq,
             content: `<div style="
               background:${dayColor};color:white;
               width:28px;height:28px;
@@ -4215,8 +4217,7 @@
               box-shadow:0 2px 4px rgba(0,0,0,0.4);
               font-family:system-ui;
             " title="Day ${d.day} ${esc(p.name)}">${seq}</div>`,
-            title: `Day ${d.day} · ${p.name}`,
-            zIndex: 100
+            title: `Day ${d.day} · ${p.name}`
           });
           marker.on('click', () => {
             const info = `<div style="padding:8px;max-width:220px;font-size:13px">
