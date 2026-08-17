@@ -4233,8 +4233,8 @@
           mapLayers.push(marker);
         });
 
-        // 适配视野到所有标记点
-        try { map.setFitView(mapLayers, false, [60, 60, 60, 60]); } catch (e) {}
+        // 适配视野到所有标记点（padding 用小值，确保 1 号机场也在视野内）
+        try { map.setFitView(mapLayers, false, [20, 20, 20, 20]); } catch (e) {}
       }
 
       function initMapViewSwitch() {
