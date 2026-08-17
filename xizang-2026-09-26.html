@@ -4218,16 +4218,30 @@
           mapLayers.push(marker);
         });
 
-        // 适配视野到所有标记点：先强制缩放到全西藏级别（确保最南边的 1 号贡嘎机场可见），再 fitView 精调
+        // 视野：用所有点的经纬度包围盒强制框住全部点（比 setFitView 可靠，确保 1 号机场在最南边也可见）
         try {
-          const tripCenter = D.trip_center || [88.5, 29.8];
-          map.setZoomAndCenter(6, tripCenter);
-          map.setFitView(mapLayers, false, [20, 20, 20, 20]);
-          // fitView 后若 zoom 仍过高（说明某些点没框进来），强制降到全境视野
-          if (map.getZoom() > 8) {
-            map.setZoomAndCenter(6, tripCenter);
+          let minLng = 180, maxLng = -180, minLat = 90, maxLat = -90;
+          allPts.forEach(({ p }) => {
+            minLng = Math.min(minLng, p.lng);
+            maxLng = Math.max(maxLng, p.lng);
+            minLat = Math.min(minLat, p.lat);
+            maxLat = Math.max(maxLat, p.lat);
+          });
+          if (minLng <= maxLng && minLat <= maxLat) {
+            // 加一点边距，避免最边缘的点贴边
+            const padLng = (maxLng - minLng) * 0.15 || 0.5;
+            const padLat = (maxLat - minLat) * 0.15 || 0.3;
+            const bounds = new AMap.Bounds(
+              new AMap.LngLat(minLng - padLng, minLat - padLat),
+              new AMap.LngLat(maxLng + padLng, maxLat + padLat)
+            );
+            map.setBounds(bounds);
+            // 兜底：若 zoom 仍过高则缩到全境
+            if (map.getZoom() > 8) {
+              map.setZoomAndCenter(6, D.trip_center || [88.5, 29.8]);
+            }
           }
-        } catch (e) {}
+        } catch (e) { /* 保持当前视野 */ }
       }
 
       function initMapViewSwitch() {
