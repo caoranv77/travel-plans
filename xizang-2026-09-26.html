@@ -1328,12 +1328,6 @@
           酒店
         </h3>
         <div class="hotel-card" id="hotel-card">
-          <h4 id="hotel-name"><span class="hotel-emoji">🏨</span> 亚朵酒店（拉萨布达拉宫广场店）</h4>
-          <p class="address" id="hotel-address">拉萨市城关区宇拓路14号（步行街）</p>
-          <p class="why" id="hotel-why">弥散+鼻吸双供氧+加湿器；距布达拉宫广场/八廓街步行10分钟；轻居酒店同属亚朵集团，若已订轻居可同品牌无缝衔接。</p>
-          <div class="links" id="hotel-links">
-            <a href="https://uri.amap.com/marker?position=91.122359,29.651998&name=亚朵布达拉宫广场店">高德</a>
-          </div>
           <div id="hotel-commute"></div>
         </div>
       </section>
@@ -3716,15 +3710,22 @@
 
       // ===== Hotel =====
       function renderHotel() {
-        const h = D.hotel || {};
-        if (h.commute && h.commute.length) {
-          const items = h.commute.map(c =>
-            `<li>Day ${c.day} ${esc(c.region)}：${esc(c.mode)} ${c.duration_min} 分钟</li>`
-          ).join('');
-          document.getElementById('hotel-commute').innerHTML =
-            `<details class="hotel-commute"><summary>每天通勤（点击展开）</summary>
-              <ul>${items}</ul>
-            </details>`;
+        // 住宿总览：每天取最后一个 stay POI（= 当晚入住），避免自然醒/入住重复
+        const stays = [];
+        (D.days || []).forEach(d => {
+          const dayStays = (d.pois || []).filter(p => p.cat === 'stay' && p.name);
+          if (!dayStays.length) return;
+          const last = dayStays[dayStays.length - 1];
+          stays.push({ day: d.day, name: last.nav_name || last.name, lng: last.lng, lat: last.lat });
+        });
+        const el = document.getElementById('hotel-commute');
+        if (el && stays.length) {
+          el.innerHTML = `<details class="hotel-commute" open>
+            <summary>全程住宿总览（${stays.length} 处）</summary>
+            <ul>${stays.map(s =>
+              `<li><b>Day ${s.day}</b> ${esc(s.name)}</li>`
+            ).join('')}</ul>
+          </details>`;
         }
       }
 
