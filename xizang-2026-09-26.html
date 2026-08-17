@@ -4182,22 +4182,6 @@
         });
         if (!allPts.length) return;
 
-        // 全程总览：所有天的所有 POI 从 1 开始连续编号，一张图看全程
-      function updateMapOverview() {
-        if (!map) return;
-        clearMap();
-
-        let seq = 0;
-        const allPts = [];
-        (D.days || []).forEach((d) => {
-          (d.pois || []).forEach((p) => {
-            if (p.lng == null || p.lat == null) return;
-            seq += 1;
-            allPts.push({ seq, d, p });
-          });
-        });
-        if (!allPts.length) return;
-
         // 画完所有 marker 后再 fit 到全部点，确保 1 号也在视野内
         const DAY_PALETTE = ['#e05d5d', '#e08a3c', '#d4b13c', '#7ab648', '#3fa06a', '#3a9a9c', '#3a7fc1', '#5a6bc4', '#8a5ac1', '#b04fa0', '#c14f7a', '#8a6f5c', '#5c8a7a'];
 
