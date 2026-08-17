@@ -87,9 +87,9 @@
   },
   {
    "item": "佩枯措/拉孜住宿",
-   "deadline": "待订",
+   "deadline": "部分已订",
    "url": null,
-   "note": "10/5 岗彭庆宾馆（湖边）、10/6 拉孜云水际，未订"
+   "note": "10/6 宜必思日喀则拉孜酒店 ✅ 已订；10/5 佩枯措岗彭庆宾馆待民宿确认"
   },
   {
    "item": "租车确认",
@@ -1253,14 +1253,27 @@
     {
      "idx": 3,
      "time": "16:00",
-     "name": "拉孜县入住（云水际）",
+     "name": "宜必思日喀则拉孜酒店（已订）",
      "cat": "stay",
-     "lng": 87.628345,
-     "lat": 29.079018,
+     "lng": 87.6353,
+     "lat": 29.086,
      "duration_min": 60,
-     "note": "4.9分，供氧+智能客控+按摩椅",
-     "why": "开了一天车，按摩椅回血",
-     "nav_name": "拉孜县城"
+     "note": "你已预订；拉孜县老中尼路13号，县城中心，免费停车+自助早餐",
+     "why": "你已预订的实际酒店（雅高集团，品质稳定）",
+     "nav_name": "宜必思日喀则拉孜酒店",
+     "amap_uri": "https://uri.amap.com/marker?position=87.6353,29.086&name=宜必思日喀则拉孜酒店",
+     "price": {
+      "min": 0,
+      "max": 0,
+      "currency": "CNY",
+      "unit": "per_night",
+      "quantity": 1,
+      "total_min": 0,
+      "total_max": 0,
+      "label": "已订",
+      "source": "user-booked",
+      "source_ref": "曹老师已预订（在线付¥0，10/6 18:00前免费取消）"
+     }
     }
    ],
    "transports": [
