@@ -1396,13 +1396,24 @@
     // 3. 空 → 地图降级为文字版行程
     (function injectAmapKey() {
       if (window.AMAP_KEY) return;  // 已注入
-      // 1. URL 参数 ?k=KEY
-      const urlKey = new URLSearchParams(location.search).get('k');
-      if (urlKey) { window.AMAP_KEY = urlKey; return; }
+      const params = new URLSearchParams(location.search);
+      // 1. URL 参数 ?k=KEY&jscode=安全密钥（高德 Web JS API 2.0 需要两者配合）
+      const urlKey = params.get('k');
+      if (urlKey) {
+        window.AMAP_KEY = urlKey;
+        const urlJscode = params.get('jscode');
+        if (urlJscode) window._AMapSecurityConfig = { securityJsCode: urlJscode };
+        return;
+      }
       // 2. localStorage
       try {
         const lsKey = localStorage.getItem('amap_web_key');
-        if (lsKey) { window.AMAP_KEY = lsKey; return; }
+        if (lsKey) {
+          window.AMAP_KEY = lsKey;
+          const lsJscode = localStorage.getItem('amap_web_jscode');
+          if (lsJscode) window._AMapSecurityConfig = { securityJsCode: lsJscode };
+          return;
+        }
       } catch (e) {}
       // 3. 空（地图降级文字版）
       window.AMAP_KEY = "";
