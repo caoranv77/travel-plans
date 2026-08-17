@@ -4218,8 +4218,16 @@
           mapLayers.push(marker);
         });
 
-        // 适配视野到所有标记点（padding 用小值，确保 1 号机场也在视野内）
-        try { map.setFitView(mapLayers, false, [20, 20, 20, 20]); } catch (e) {}
+        // 适配视野到所有标记点：先强制缩放到全西藏级别（确保最南边的 1 号贡嘎机场可见），再 fitView 精调
+        try {
+          const tripCenter = D.trip_center || [88.5, 29.8];
+          map.setZoomAndCenter(6, tripCenter);
+          map.setFitView(mapLayers, false, [20, 20, 20, 20]);
+          // fitView 后若 zoom 仍过高（说明某些点没框进来），强制降到全境视野
+          if (map.getZoom() > 8) {
+            map.setZoomAndCenter(6, tripCenter);
+          }
+        } catch (e) {}
       }
 
       function initMapViewSwitch() {
@@ -4646,6 +4654,11 @@
         initMapViewSwitch();
         showDay(1);
         initMap();
+        // 支持 ?view=overview 直接进全程总览（调试/验证用）
+        if (new URLSearchParams(location.search).get('view') === 'overview') {
+          const btn = document.querySelector('.map-view-btn[data-view="overview"]');
+          if (btn) btn.click();
+        }
       }
 
       if (document.readyState === 'loading') {
