@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>西藏 13 天环线 · 四大措+双雪山（9 处住宿） · 2026-09-26 ~ 2026-10-08</title>
+  <title>西藏 13 天环线 · 四大措+双雪山（10 处住宿） · 2026-09-26 ~ 2026-10-08</title>
   <style>
     /* ===== 基础 ===== */
     *, *::before, *::after { box-sizing: border-box; }
@@ -594,7 +594,17 @@
     .tab .tab-region {
       display: block;
       font-size: var(--fs-sm);
-      font-weight: 500;
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 140px;
+    }
+    .tab .tab-place {
+      display: block;
+      font-size: 11px;
+      font-weight: 400;
+      opacity: 0.8;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -1243,9 +1253,9 @@
     <div id="validation-banner" role="status" aria-live="polite" hidden></div>
 
     <header class="hero">
-      <h1>西藏 13 天环线 · 四大措+双雪山（9 处住宿）</h1>
+      <h1>西藏 13 天环线 · 四大措+双雪山（10 处住宿）</h1>
       <p class="meta">2026-09-26 ~ 2026-10-08 · 13 天 12 晚 · 西藏（拉萨→纳木错→珠峰→佩枯措）</p>
-      <p class="summary">逆时针环线：拉萨→纳木错→色林错→拉萨→羊湖→珠峰→佩枯措→拉萨。纳木错、色林错、羊卓雍措、佩枯措四大措 + 珠峰、希夏邦马两大雪山 + 扎什伦布寺（班禅）。全程 9 处住宿（每晚不同，见住宿总览），一地 2-3 天不赶路，日落导向（不看日出），一人自驾沃尔沃 XC60，10/7 返拉萨、10/8 飞离。</p>
+      <p class="summary">逆时针环线：拉萨→纳木错→色林错→拉萨→羊湖→珠峰→佩枯措→拉萨。纳木错、色林错、羊卓雍措、佩枯措四大措 + 珠峰、希夏邦马两大雪山 + 扎什伦布寺（班禅）。全程 10 处住宿（D1-D2 拉萨同住轻居，其余每晚不同，见住宿总览），一地 2-3 天不赶路，日落导向（不看日出），一人自驾沃尔沃 XC60，10/7 返拉萨、10/8 飞离。</p>
     </header>
 
     <button class="drawer-toggle" id="drawer-toggle" aria-label="打开行程信息" aria-expanded="false" aria-controls="drawer">
@@ -1296,14 +1306,6 @@
 
   <!-- ===== Drawer 抽屉 ===== -->
   <div class="drawer-backdrop" id="drawer-backdrop" aria-hidden="true"></div>
-  <div class="cost-sheet-backdrop" id="cost-sheet-backdrop" aria-hidden="true"></div>
-  <div class="cost-sheet" id="cost-sheet" role="dialog" aria-modal="true" aria-labelledby="cost-sheet-title" aria-hidden="true">
-    <div class="cost-sheet-header">
-      <h3 id="cost-sheet-title">本段花销</h3>
-      <button type="button" class="cost-sheet-close" id="cost-sheet-close" aria-label="关闭">×</button>
-    </div>
-    <div id="cost-sheet-body"></div>
-  </div>
   <aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-title" aria-hidden="true">
 
     <header class="drawer-header">
@@ -1344,18 +1346,7 @@
         <div class="weather-card" id="weather-plan-text"></div>
       </section>
 
-      <!-- 花销预估 -->
-      <section id="budget-section">
-        <h3>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <line x1="12" y1="1" x2="12" y2="23"></line>
-            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
-          </svg>
-          花销预估
-          <span class="count" id="budget-total-badge"></span>
-        </h3>
-        <div class="budget-card" id="budget-breakdown"></div>
-      </section>
+      <!-- 花销预估（已按用户要求移除：不做金额统计） -->
 
       <!-- 提前订 -->
       <section>
@@ -1415,11 +1406,11 @@
     window.tripData = {
   "$schema": "./README.md#schema",
   "amap_key": "",
-  "trip_name": "西藏 13 天环线 · 四大措+双雪山（9 处住宿）",
+  "trip_name": "西藏 13 天环线 · 四大措+双雪山（10 处住宿）",
   "date_range": "2026-09-26 ~ 2026-10-08",
   "n_days": "13 天 12 晚",
   "city": "西藏（拉萨→纳木错→珠峰→佩枯措）",
-  "summary": "逆时针环线：拉萨→纳木错→色林错→拉萨→羊湖→珠峰→佩枯措→拉萨。纳木错、色林错、羊卓雍措、佩枯措四大措 + 珠峰、希夏邦马两大雪山 + 扎什伦布寺（班禅）。全程 9 处住宿（每晚不同，见住宿总览），一地 2-3 天不赶路，日落导向（不看日出），一人自驾沃尔沃 XC60，10/7 返拉萨、10/8 飞离。",
+  "summary": "逆时针环线：拉萨→纳木错→色林错→拉萨→羊湖→珠峰→佩枯措→拉萨。纳木错、色林错、羊卓雍措、佩枯措四大措 + 珠峰、希夏邦马两大雪山 + 扎什伦布寺（班禅）。全程 10 处住宿（D1-D2 拉萨同住轻居，其余每晚不同，见住宿总览），一地 2-3 天不赶路，日落导向（不看日出），一人自驾沃尔沃 XC60，10/7 返拉萨、10/8 飞离。",
   "weather_plan": "9 月底-10 月初西藏进入旱季，通透度高；纳木错、珠峰、佩枯措夜间 0℃ 以下，带足保暖；那根拉山口(5190m)可能飘雪，备防滑链。",
   "trip_center": [
     88.5,
@@ -1467,7 +1458,7 @@
       "item": "拉萨亚朵酒店（布宫广场店）",
       "deadline": "尽早（4晚）",
       "url": null,
-      "note": "亚朵布宫广场店（宇拓路14号），弥散+鼻吸双供氧；D1 轻居已订，D2/D6/D12 可订亚朵"
+      "note": "亚朵布宫广场店（宇拓路14号），弥散+鼻吸双供氧；D1-D2 轻居已订，D6/D12 可订亚朵"
     },
     {
       "item": "巴松村吉山吉舍",
@@ -1507,7 +1498,7 @@
       "day": 1,
       "date": "2026-09-26",
       "weekday": "周六",
-      "region": "拉萨 · 适应",
+      "region": "拉萨 · 八廓街",
       "theme": "抵达+高反适应",
       "weather": "晴 20℃/5℃",
       "weather_emoji": "🌤",
@@ -1592,7 +1583,7 @@
       "day": 2,
       "date": "2026-09-27",
       "weekday": "周日",
-      "region": "拉萨 · 适应",
+      "region": "拉萨 · 大昭寺",
       "theme": "市区漫游+买补给",
       "weather": "晴 20℃/5℃",
       "weather_emoji": "🌤",
@@ -1605,26 +1596,26 @@
         {
           "idx": 1,
           "time": "09:30",
-          "name": "亚朵酒店自然醒+早餐",
+          "name": "轻居酒店自然醒+早餐",
           "cat": "stay",
-          "lng": 91.122359,
-          "lat": 29.651998,
+          "lng": 91.115358,
+          "lat": 29.654998,
           "duration_min": 90,
           "note": "弥散供氧房睡够再动，高原第一晚睡好最重要",
-          "why": "亚朵供氧双系统，睡得好",
+          "why": "轻居弥散供氧，睡得好",
           "price": {
-            "min": 350,
-            "max": 550,
+            "min": 0,
+            "max": 0,
             "currency": "CNY",
             "unit": "per_night",
             "quantity": 1,
-            "total_min": 350,
-            "total_max": 550,
-            "label": "住宿",
-            "source": "web-research",
-            "source_ref": "网络公开价参考"
+            "total_min": 0,
+            "total_max": 0,
+            "label": "已订",
+            "source": "user-booked",
+            "source_ref": "曹老师已预订"
           },
-          "nav_name": "亚朵酒店（布宫广场）"
+          "nav_name": "轻居酒店（布达拉宫广场）"
         },
         {
           "idx": 2,
@@ -1653,26 +1644,26 @@
         {
           "idx": 4,
           "time": "16:00",
-          "name": "亚朵酒店（布宫广场店）",
+          "name": "轻居酒店（布宫广场北京中路）",
           "cat": "stay",
-          "lng": 91.122359,
-          "lat": 29.651998,
+          "lng": 91.115358,
+          "lat": 29.654998,
           "duration_min": 180,
-          "note": "弥散+鼻吸双供氧；离轻居/八廓街都近；免费停车",
-          "why": "亚朵品质稳定，供氧双系统，位置核心",
+          "note": "已订酒店，弥散供氧；到八廓街步行约15分钟",
+          "why": "与 D1 同住轻居，不用换酒店",
           "price": {
-            "min": 350,
-            "max": 550,
+            "min": 0,
+            "max": 0,
             "currency": "CNY",
             "unit": "per_night",
             "quantity": 1,
-            "total_min": 350,
-            "total_max": 550,
-            "label": "住宿",
-            "source": "web-research",
-            "source_ref": "网络公开价参考"
+            "total_min": 0,
+            "total_max": 0,
+            "label": "已订",
+            "source": "user-booked",
+            "source_ref": "曹老师已预订"
           },
-          "nav_name": "亚朵酒店（布宫广场）"
+          "nav_name": "轻居酒店（布达拉宫广场）"
         }
       ],
       "transports": [
@@ -1710,7 +1701,7 @@
       "day": 3,
       "date": "2026-09-28",
       "weekday": "周一",
-      "region": "纳木错 · 扎西半岛",
+      "region": "拉萨 · 纳木错（扎西半岛）",
       "theme": "圣湖日落+星空",
       "weather": "晴 10℃/-5℃",
       "weather_emoji": "🌤",
@@ -1804,7 +1795,7 @@
       "day": 4,
       "date": "2026-09-29",
       "weekday": "周二",
-      "region": "班戈 · 藏北草原",
+      "region": "那曲 · 班戈草原",
       "theme": "羌塘草原过渡",
       "weather": "晴 8℃/-8℃",
       "weather_emoji": "🌤",
@@ -1898,7 +1889,7 @@
       "day": 5,
       "date": "2026-09-30",
       "weekday": "周三",
-      "region": "色林错 · 那曲",
+      "region": "那曲 · 色林错",
       "theme": "西藏第一大湖",
       "weather": "晴 8℃/-8℃",
       "weather_emoji": "🌤",
@@ -1992,7 +1983,7 @@
       "day": 6,
       "date": "2026-10-01",
       "weekday": "周四",
-      "region": "拉萨 · 休整",
+      "region": "拉萨 · 八廓街",
       "theme": "国庆回城休整",
       "weather": "晴 20℃/5℃",
       "weather_emoji": "🌤",
@@ -2077,7 +2068,7 @@
       "day": 7,
       "date": "2026-10-02",
       "weekday": "周五",
-      "region": "羊湖 · 日喀则",
+      "region": "山南 · 羊卓雍措",
       "theme": "三大圣湖之羊卓雍措",
       "weather": "晴 15℃/3℃",
       "weather_emoji": "🌤",
@@ -2225,7 +2216,7 @@
       "day": 8,
       "date": "2026-10-03",
       "weekday": "周六",
-      "region": "扎什伦布寺 · 岗嘎",
+      "region": "日喀则 · 扎什伦布寺",
       "theme": "班禅驻锡地+珠峰前哨",
       "weather": "晴 12℃/0℃",
       "weather_emoji": "🌤",
@@ -2298,7 +2289,7 @@
       "day": 9,
       "date": "2026-10-04",
       "weekday": "周日",
-      "region": "珠峰大本营",
+      "region": "日喀则 · 珠峰大本营",
       "theme": "世界之巅日落",
       "weather": "晴 -5℃/-15℃ 大风",
       "weather_emoji": "🏔",
@@ -2413,7 +2404,7 @@
       "day": 10,
       "date": "2026-10-05",
       "weekday": "周一",
-      "region": "佩枯措 · 希夏邦马",
+      "region": "日喀则 · 佩枯措",
       "theme": "全程主角：佩枯措日落",
       "weather": "晴 8℃/-8℃",
       "weather_emoji": "🏔",
@@ -2519,7 +2510,7 @@
       "day": 11,
       "date": "2026-10-06",
       "weekday": "周二",
-      "region": "拉孜 · 返程",
+      "region": "日喀则 · 拉孜",
       "theme": "佩枯措回血+北上返程",
       "weather": "晴 10℃/0℃",
       "weather_emoji": "🌤",
@@ -2592,7 +2583,7 @@
       "day": 12,
       "date": "2026-10-07",
       "weekday": "周三",
-      "region": "拉萨 · 收官",
+      "region": "拉萨 · 八廓街",
       "theme": "返程拉萨，稳稳到家",
       "weather": "晴 20℃/5℃",
       "weather_emoji": "🌤",
@@ -2698,7 +2689,7 @@
       "day": 13,
       "date": "2026-10-08",
       "weekday": "周四",
-      "region": "拉萨 → 机场",
+      "region": "拉萨 · 贡嘎机场",
       "theme": "返程",
       "weather": "晴 20℃/5℃",
       "weather_emoji": "✈️",
@@ -2745,34 +2736,7 @@
       ],
       "meals": {}
     }
-  ],
-  "budget_summary": {
-    "住宿": {
-      "min": 5310,
-      "max": 6410,
-      "label": "12晚住宿（拉萨4晚亚朵系+各1晚）"
-    },
-    "交通": {
-      "min": 3000,
-      "max": 5000,
-      "label": "XC60 租车 13 天+油费过路费"
-    },
-    "门票": {
-      "min": 600,
-      "max": 700,
-      "label": "珠峰280+羊湖60+卡若拉50+扎寺80+绒布寺35+色林错20"
-    },
-    "餐饮": {
-      "min": 1000,
-      "max": 1800,
-      "label": "13 天一人食"
-    },
-    "总预算": {
-      "min": 9910,
-      "max": 13910,
-      "label": "预估总花费（不含机票）"
-    }
-  }
+  ]
 };
   </script>
 
@@ -2796,6 +2760,19 @@
         shopping: '#b32c50',
         transport:'#2c5e8a'
       };
+
+      const CAT_LABELS = {
+        hotel:    '酒店',
+        stay:     '住宿',
+        food:     '美食',
+        scenery:  '风景',
+        culture:  '人文',
+        shopping: '购物',
+        transport:'交通',
+        sight:    '景点',
+        photo:    '拍照'
+      };
+      function catLabel(cat) { return CAT_LABELS[cat] || cat || ''; }
 
       function fmtMode(mode) {
         const map = { walking:'步行', transit:'公交', subway:'地铁', metro:'地铁', bus:'公交', train:'火车', jr:'JR', driving:'驾车', biking:'骑行' };
@@ -3742,12 +3719,16 @@
       // ===== Tabs =====
       function renderTabs() {
         const tabsEl = document.getElementById('tabs');
-        tabsEl.innerHTML = D.days.map(d =>
-          `<button class="tab" role="tab" data-day="${d.day}" aria-selected="${d.day === 1}">
-            <span class="tab-day">Day ${d.day}</span>
-            <span class="tab-region">${esc(d.region)}</span>
-          </button>`
-        ).join('');
+        tabsEl.innerHTML = D.days.map(d => {
+          const parts = String(d.region || '').split('·').map(s => s.trim()).filter(Boolean);
+          const area = parts[0] || '';
+          const place = parts.slice(1).join(' · ');
+          return `<button class="tab" role="tab" data-day="${d.day}" aria-selected="${d.day === 1}">
+            <span class="tab-day">DAY ${d.day}</span>
+            ${area ? `<span class="tab-region">${esc(area)}</span>` : ''}
+            ${place ? `<span class="tab-place">${esc(place)}</span>` : ''}
+          </button>`;
+        }).join('');
         tabsEl.querySelectorAll('.tab').forEach(tab => {
           tab.addEventListener('click', () => {
             currentDay = parseInt(tab.dataset.day);
@@ -3952,10 +3933,6 @@
           const note = p.note ? `<p class="note">${mdLite(p.note)}</p>` : '';
           const why = p.why ? `<p class="why">→ ${mdLite(p.why)}</p>` : '';
           const slotId = `d${d.day}-p${p.idx}`;
-          const ctx = buildSlotContext(d, p, poiArrIdx, dayIdx - 1, mealsUsed, pendingMeals);
-          const costItems = buildSlotCostItems(d, p, ctx);
-          slotCostCache[slotId] = costItems;
-          const costUi = renderCostMarginHtml(costItems, slotId);
 
           // "下一站"小条（从本 POI 出发的 transport）
           const nextTransport = d.transports && d.transports.find(t => t.from_idx === p.idx);
@@ -3994,16 +3971,14 @@
               <div class="time-block-main">
                 <div class="time-row">
                   <time>${esc(p.time)}</time>
-                  ${costUi.pillHtml}
                 </div>
                 <div class="place">
-                  <h4><span class="slot-num">${slotNum}.</span>${esc(p.name)} <span class="cat ${esc(p.cat)}">${esc(p.cat)}</span>${ws}</h4>
+                  <h4><span class="slot-num">${slotNum}.</span>${esc(p.name)} <span class="cat ${esc(p.cat)}">${esc(catLabel(p.cat))}</span>${ws}</h4>
                   ${note}${why}
                   ${nextLegHtml}
                   ${mealLegHtml}
                 </div>
               </div>
-              ${costUi.marginHtml}
             </div>
           </li>`;
         }).join('');
@@ -4152,7 +4127,7 @@
           marker.on('click', () => {
             const info = `<div style="padding:8px;max-width:220px;font-size:13px">
               <strong>${esc(p.time)} ${esc(p.name)}</strong><br>
-              <span style="color:#888">${esc(p.cat)} · ${p.duration_min || '?'} 分钟</span>
+              <span style="color:#888">${esc(catLabel(p.cat))} · ${p.duration_min || '?'} 分钟</span>
               ${p.note ? `<p style="margin:6px 0;color:#666">${esc(p.note)}</p>` : ''}
             </div>`;
             new AMap.InfoWindow({ content: info, offset: new AMap.Pixel(0, -32) })
@@ -4222,7 +4197,7 @@
           marker.on('click', () => {
             const info = `<div style="padding:8px;max-width:220px;font-size:13px">
               <strong>Day ${d.day} · ${esc(p.time)} ${esc(p.name)}</strong><br>
-              <span style="color:#888">${esc(p.cat)} · ${p.duration_min || '?'} 分钟</span>
+              <span style="color:#888">${esc(catLabel(p.cat))} · ${p.duration_min || '?'} 分钟</span>
               ${p.note ? `<p style="margin:6px 0;color:#666">${esc(p.note)}</p>` : ''}
             </div>`;
             new AMap.InfoWindow({ content: info, offset: new AMap.Pixel(0, -32) })
@@ -4368,14 +4343,9 @@
       document.getElementById('drawer-toggle').addEventListener('click', openDrawer);
       document.getElementById('drawer-close').addEventListener('click', closeDrawer);
       document.getElementById('drawer-backdrop').addEventListener('click', closeDrawer);
-      document.getElementById('cost-sheet-backdrop').addEventListener('click', closeCostSheet);
-      document.getElementById('cost-sheet-close').addEventListener('click', closeCostSheet);
       document.addEventListener('keydown', e => {
         const drawer = document.getElementById('drawer');
-        if (e.key === 'Escape') {
-          if (document.getElementById('cost-sheet').classList.contains('open')) closeCostSheet();
-          else if (drawer.classList.contains('open') && !drawer.classList.contains('expanded')) closeDrawer();
-        }
+        if (e.key === 'Escape' && drawer.classList.contains('open') && !drawer.classList.contains('expanded')) closeDrawer();
       });
       DESKTOP_MQ.addEventListener('change', e => {
         if (!e.matches) closeDrawer();   // 切到 mobile：关 drawer；切到 desktop：不自动开，让用户点 toggle
